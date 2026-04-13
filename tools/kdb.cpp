@@ -8,47 +8,48 @@
 #include <unistd.h>
 
 namespace {
-pid_t attach(int argc, const char **argv) {
-  pid_t pid{};
 
-  if (argc == 3 && std::string_view(argv[1]) == "-p") {
-    pid = std::atoi(argv[2]);
+  pid_t attach(int argc, const char **argv) {
+    pid_t pid{};
 
-    if (pid <= 0) {
-      std::cerr << "Invalid PID\n";
-      return -1;
-    }
+    if (argc == 3 && std::string_view(argv[1]) == "-p") {
+      pid = std::atoi(argv[2]);
 
-    if (ptrace(PT_ATTACH, pid, nullptr, 0) < 0) {
-      std::perror("Could not attach");
-      return -1;
-    }
-
-  } else {
-    const char *program_path = argv[1];
-
-    if ((pid = fork()) < 0) {
-      std::cerr << "Fork failed\n";
-      return -1;
-    }
-
-    if (pid == 0) {
-      // child process
-
-      if (ptrace(PT_TRACE_ME, 0, nullptr, 0) < 0) {
-        std::perror("Trace failed");
+      if (pid <= 0) {
+        std::cerr << "Invalid PID\n";
         return -1;
       }
 
-      if (execlp(program_path, program_path, nullptr) < 0) {
-        std::perror("Execution failed");
+      if (ptrace(PT_ATTACH, pid, nullptr, 0) < 0) {
+        std::perror("Could not attach");
         return -1;
       }
+    } else {
+      const char *program_path = argv[1];
+
+      if ((pid = fork()) < 0) {
+        std::cerr << "Fork failed\n";
+        return -1;
+      }
+
+      if (pid == 0) {
+        // child process
+
+        if (ptrace(PT_TRACE_ME, 0, nullptr, 0) < 0) {
+          std::perror("Trace failed");
+          return -1;
+        }
+
+        if (execlp(program_path, program_path, nullptr) < 0) {
+          std::perror("Execution failed");
+          return -1;
+        }
+      }
     }
+
+    return pid;
   }
 
-  return pid;
-} // namespace
 } // namespace
 
 int main(int argc, const char **argv) {
