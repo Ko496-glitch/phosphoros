@@ -11,8 +11,15 @@
 #include <vector>
 
 namespace {
-
-  void handle_command(pid_t pid, std::string_view line){}
+    
+  std::vector<std::string>split(std::string_view str, char delimiter){}
+  bool is_prefix(std::string_view prefix, std::string_view of);
+  void resume(pid_t pid);
+  void wait_on_signal(pid_t pid);
+  
+  void handle_command(pid_t pid, std::string_view line){
+      
+  }
 
   pid_t attach(int argc, const char **argv) {
     pid_t pid{};
@@ -70,7 +77,7 @@ int main(int argc, const char **argv) {
     if(std::string_view(line).empty()){
         free(line);
         if(history_length > 0){
-           // line_str = history_list()[history_length -1]->line;
+            line_str = history_list()[history_length -1]->line;
         }else{
             line_str = line;
             add_history(line);
