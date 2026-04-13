@@ -1,4 +1,6 @@
-#include <editline/readline.h>
+#include <cstdio>
+#include <readline/readline.h>
+#include <readline/history.h>
 #include <iostream>
 #include <string>
 #include <string_view>
@@ -6,8 +8,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <vector>
 
 namespace {
+
+  void handle_command(pid_t pid, std::string_view line){}
 
   pid_t attach(int argc, const char **argv) {
     pid_t pid{};
@@ -58,6 +63,25 @@ int main(int argc, const char **argv) {
     return -1;
   }
   pid_t pid = attach(argc, argv);
+  char *line = nullptr;
+  while ((line = readline("kdb> ")) != nullptr) {
+      
+    std::string line_str;
+    if(std::string_view(line).empty()){
+        free(line);
+        if(history_length > 0){
+           // line_str = history_list()[history_length -1]->line;
+        }else{
+            line_str = line;
+            add_history(line);
+            free(line);
+        }
+    }
+    if(!line_str.empty()){
+        handle_command(pid,line_str);
+        free(line);
+    }
+  }
 
   int wait_status, options{};
   if (waitpid(pid, &wait_status, options) < 0) {
