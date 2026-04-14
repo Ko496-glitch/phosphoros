@@ -8,6 +8,12 @@ namespace kdb {
 
   enum class process_state { stopped, terminated, running, exited };
 
+  class stop_reason {
+
+  private:
+  public:
+  };
+
   class process {
 
   private:
