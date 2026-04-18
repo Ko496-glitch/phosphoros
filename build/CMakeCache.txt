@@ -274,6 +274,9 @@ Catch2_DIR:PATH=/Users/kartikohlan/phosphoros/kdb/build/vcpkg_installed/arm64-os
 //Maximum time allowed before CTest will kill the test.
 DART_TESTING_TIMEOUT:STRING=1500
 
+//Path to a program.
+GITCOMMAND:FILEPATH=/usr/bin/git
+
 //Command to build the project
 MAKECOMMAND:STRING=/opt/homebrew/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 
@@ -288,6 +291,12 @@ PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/opt/homebrew/bin/pkg-config
+
+//Path to a file.
+READLINE_INCLUDE_DIR:PATH=/opt/homebrew/opt/readline/include
+
+//Path to a library.
+READLINE_LIBRARY:FILEPATH=/opt/homebrew/opt/readline/lib/libreadline.dylib
 
 //Name of the computer/site where compile is being run
 SITE:STRING=Kartiks-MacBook-Pro.local
@@ -551,6 +560,8 @@ CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v2.5.1()]
+//ADVANCED property for variable: GITCOMMAND
+GITCOMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MAKECOMMAND
 MAKECOMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MEMORYCHECK_COMMAND

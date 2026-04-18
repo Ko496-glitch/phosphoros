@@ -1,17 +1,17 @@
-#include <error.hpp>
+#include <libkdb/error.hpp>
 #include <libkdb/process.hpp>
 #include <signal.h>
 #include <sys/ptrace.h>
-#include <sys/type.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
 namespace kdb {
 
-  prcocess::~process() {
+  process::~process() {
     if (pid_ != 0) {
       int status;
-      if (status == prcoess_state::running) {
+      if (state_ == process_state::running) {
         kill(pid_, SIGSTOP);
         waitpid(pid_, &status, 0);
       }
@@ -25,7 +25,7 @@ namespace kdb {
     }
   }
 
-  std::make_unique<process> launch(std::filepath::path path) {
+  std::unique_ptr<process> process::launch(std::filesystem::path path) {
     pid_t pid{};
 
     if ((pid = fork()) < 0) {
@@ -38,36 +38,61 @@ namespace kdb {
         error::send_error_no("Trace Failed");
       }
 
-      if (execlp(program_path, program_path, nullptr) < 0) {
+      if (execlp(path.c_str(), path.c_str(), nullptr) < 0) {
         error::send_error_no("Execution Failed");
       }
     }
 
-    auto proc = std::make_unique<process>(pid, true);
+    auto proc = std::unique_ptr<process>(new kdb::process(pid,true));
     proc->wait_on_signal();
     return proc;
   }
 
-  std::make_unique<process> attach(pid_t pid) {
+  std::unique_ptr<process> process::attach(pid_t pid) {
 
     if (pid <= 0) {
-      error::send("Invalid Pid\n")
+      error::send("Invalid Pid\n");
     }
 
     if (ptrace(PT_ATTACH, pid, nullptr, 0) < 0) {
       error::send_error_no("Could not Attach");
     }
 
-    proc = make_unique<process>(pid, /*terminate_on_end =*/false);
+    std::unique_ptr<process> proc = std::unique_ptr<process>(new process(pid, /*terminate_on_end =*/false));
     proc->wait_on_signal();
     return proc;
   }
 
-  void resume(pid_t pid) {
-    if (ptrace(PT_CONTINUE, pid, (caddr_t)1 0)) {
+  void process::resume() {
+    if (ptrace(PT_CONTINUE, pid_, (caddr_t)1, 0)) {
       error::send_error_no("Couldn't Contunie");
     }
     state_ = process_state::running;
+  }
+
+  stop_reason::stop_reason(int wait_status) {
+    if (WIFEXITED(wait_status)) {
+      reason = process_state::exited;
+      info = WEXITSTATUS(wait_status);
+    } else if (WIFSIGNALED(wait_status)) {
+      reason = process_state::terminated;
+      info = WTERMSIG(wait_status);
+    } else if (WIFSTOPPED(wait_status)) {
+      reason = process_state::stopped;
+      info = WSTOPSIG(wait_status);
+    }
+  }
+  
+  stop_reason process::wait_on_signal(){
+      int wait_status{};
+      int options{};
+      if(waitpid(pid_, &wait_status, options) < 0){
+          error::send_error_no("Waitpid failed\n");
+      }
+      stop_reason reason(wait_status);
+      state_ = reason.reason;
+      return reason;
+      
   }
 
 } // namespace kdb

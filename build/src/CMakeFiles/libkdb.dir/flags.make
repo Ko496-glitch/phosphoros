@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/kartikohlan/phosphoros/kdb/include -I/Users/kartikohlan/phosphoros/kdb/src/include
+CXX_INCLUDES = -I/Users/kartikohlan/phosphoros/kdb/include -I/Users/kartikohlan/phosphoros/kdb/src/include -isystem /Library/Developer/CommandLineTools/SDKs/MacOSX26.sdk/usr/include/editline
 
 CXX_FLAGSarm64 = -std=gnu++20 -arch arm64
 

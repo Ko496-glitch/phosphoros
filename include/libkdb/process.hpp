@@ -10,8 +10,10 @@ namespace kdb {
 
   class stop_reason {
 
-  private:
   public:
+    std::uint8_t info;
+    process_state reason;
+    stop_reason(int wait_reason);
   };
 
   class process {
@@ -21,7 +23,7 @@ namespace kdb {
     bool terminate_on_end = true;
     process_state state_ = process_state::stopped;
     process(pid_t pid, bool terminate_on_end)
-        : pid_(pid) : terminate_on_end(terminate_on_end) {}
+        : pid_(pid), terminate_on_end(terminate_on_end) {}
 
   public:
     process() = delete;
@@ -29,13 +31,13 @@ namespace kdb {
     process &operator=(const process &) = delete;
 
     ~process();
-
-    static std::make_unique<process> launch(std::filepath::path path);
-    static std::make_unique<process> attach(pid_t pid);
+    static std::unique_ptr<process> launch(std::filesystem::path path);
+    static std::unique_ptr<process> attach(pid_t pid);
 
     pid_t pid() const { return pid_; }
     process_state state() const { return state_; }
     void resume();
+    stop_reason wait_on_signal();
   };
 
 } // namespace kdb
