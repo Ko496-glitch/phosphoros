@@ -185,29 +185,29 @@ libkdb/fast:
 	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/build
 .PHONY : libkdb/fast
 
-libkdb.o: libkdb.cpp.o
-.PHONY : libkdb.o
+process.o: process.cpp.o
+.PHONY : process.o
 
 # target to build an object file
-libkdb.cpp.o:
-	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/libkdb.cpp.o
-.PHONY : libkdb.cpp.o
+process.cpp.o:
+	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/process.cpp.o
+.PHONY : process.cpp.o
 
-libkdb.i: libkdb.cpp.i
-.PHONY : libkdb.i
+process.i: process.cpp.i
+.PHONY : process.i
 
 # target to preprocess a source file
-libkdb.cpp.i:
-	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/libkdb.cpp.i
-.PHONY : libkdb.cpp.i
+process.cpp.i:
+	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/process.cpp.i
+.PHONY : process.cpp.i
 
-libkdb.s: libkdb.cpp.s
-.PHONY : libkdb.s
+process.s: process.cpp.s
+.PHONY : process.s
 
 # target to generate assembly for a file
-libkdb.cpp.s:
-	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/libkdb.cpp.s
-.PHONY : libkdb.cpp.s
+process.cpp.s:
+	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/process.cpp.s
+.PHONY : process.cpp.s
 
 # Help Target
 help:
@@ -223,9 +223,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... libkdb"
-	@echo "... libkdb.o"
-	@echo "... libkdb.i"
-	@echo "... libkdb.s"
+	@echo "... process.o"
+	@echo "... process.i"
+	@echo "... process.s"
 .PHONY : help
 
 

@@ -97,6 +97,7 @@ test/tests: test/CMakeFiles/tests.dir/tests.cpp.o
 test/tests: test/CMakeFiles/tests.dir/build.make
 test/tests: src/libkdb.a
 test/tests: vcpkg_installed/arm64-osx/debug/lib/manual-link/libCatch2Maind.a
+test/tests: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libedit.tbd
 test/tests: vcpkg_installed/arm64-osx/debug/lib/libCatch2d.a
 test/tests: test/CMakeFiles/tests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kartikohlan/phosphoros/kdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable tests"

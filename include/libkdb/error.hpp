@@ -1,6 +1,7 @@
 #pragma once
 #include <cstring>
-#include <stdecept>
+#include <stdexcept>
+#include <string>
 
 namespace kdb {
 
@@ -10,16 +11,15 @@ namespace kdb {
     error(const std::string& what) : std::runtime_error(what) {}
 
   public:
-    [noexcept]
+    [[noexcept]]
     static void send(const std::string &what){
         throw(what);
     };
-    
+    [[noexcept]]
     static void send_error_no(const std::string &prefix){
-        throw(prefix + ":" + std::strerror(errorno)));
+        throw std::runtime_error(prefix + ": " + std::strerror(errno));
     }
     
-  
   
   
   };

@@ -96,7 +96,7 @@ kdb_EXTERNAL_OBJECTS =
 tools/kdb: tools/CMakeFiles/kdb.dir/kdb.cpp.o
 tools/kdb: tools/CMakeFiles/kdb.dir/build.make
 tools/kdb: src/libkdb.a
-tools/kdb: src/libkdb.a
+tools/kdb: /opt/homebrew/opt/readline/lib/libreadline.dylib
 tools/kdb: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libedit.tbd
 tools/kdb: tools/CMakeFiles/kdb.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kartikohlan/phosphoros/kdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable kdb"
