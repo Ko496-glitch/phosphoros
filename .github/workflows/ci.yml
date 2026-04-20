@@ -1,0 +1,40 @@
+name: CMake CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ dev ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build libedit-dev
+
+    - name: Install Catch2
+      run: |
+        git clone https://github.com/catchorg/Catch2.git
+        cd Catch2
+        cmake -B build -S . -DBUILD_TESTING=OFF
+        sudo cmake --build build --target install
+
+    - name: Configure
+      run: |
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
+
+    - name: Build
+      run: |
+        cmake --build build
+
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
