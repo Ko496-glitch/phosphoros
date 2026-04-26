@@ -22,8 +22,9 @@ namespace kdb {
     pid_t pid_{};
     bool terminate_on_end = true;
     process_state state_ = process_state::stopped;
-    process(pid_t pid, bool terminate_on_end)
-        : pid_(pid), terminate_on_end(terminate_on_end) {}
+    bool is_attached = true;
+    process(pid_t pid, bool terminate_on_end, bool is_attached)
+        : pid_(pid), terminate_on_end(terminate_on_end), is_attached(is_attached) {}
 
   public:
     process() = delete;
@@ -31,7 +32,7 @@ namespace kdb {
     process &operator=(const process &) = delete;
 
     ~process();
-    static std::unique_ptr<process> launch(std::filesystem::path path);
+    static std::unique_ptr<process> launch(std::filesystem::path path, bool debug = true);
     static std::unique_ptr<process> attach(pid_t pid);
 
     pid_t pid() const { return pid_; }
