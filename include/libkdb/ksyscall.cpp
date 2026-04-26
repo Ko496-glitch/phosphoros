@@ -1,14 +1,18 @@
-#include<iostream>
-#include<syscall.h>
+#include "ksyscall.hpp"
 #include <cstring>
+#include <iostream>
 #include <stdexcept>
-#include <string>
-#include "ksyscall.cpp"
 
 
-namespace kdb{
-    
-    
-    
-    
-}//namespace kdb
+namespace kdb {
+
+  void ktrace(ptrace_args &args) {
+#ifdef __linux__
+    args.result = ptrace(args.req, args.pid, args.args.addr, args.data);
+
+#elif defined(__APPLE__)
+    args.result = ptrace(args.req, args.pid, args.addr, args.data);
+#endif
+  }
+
+} // namespace kdb
