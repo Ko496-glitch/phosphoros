@@ -20,7 +20,7 @@ namespace kdb {
     void close_write();
     
     std::vector<std::byte> read();
-    void write(std::byte &from, std::size_t bytes);
+    void write(std::byte *from, std::size_t bytes);
     
   };
 
