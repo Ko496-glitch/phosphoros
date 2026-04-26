@@ -18,4 +18,4 @@ catch2 provides pkg-config modules:
   # A modern, C++-native, test framework for C++14 and above
   catch2
 
-All requested installations completed successfully in: 116 us
+All requested installations completed successfully in: 47.5 us

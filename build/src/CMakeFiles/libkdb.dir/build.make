@@ -86,17 +86,33 @@ src/CMakeFiles/libkdb.dir/process.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/libkdb.dir/process.cpp.s"
 	cd /Users/kartikohlan/phosphoros/kdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kartikohlan/phosphoros/kdb/src/process.cpp -o CMakeFiles/libkdb.dir/process.cpp.s
 
+src/CMakeFiles/libkdb.dir/pipe.cpp.o: src/CMakeFiles/libkdb.dir/flags.make
+src/CMakeFiles/libkdb.dir/pipe.cpp.o: /Users/kartikohlan/phosphoros/kdb/src/pipe.cpp
+src/CMakeFiles/libkdb.dir/pipe.cpp.o: src/CMakeFiles/libkdb.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/kartikohlan/phosphoros/kdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/libkdb.dir/pipe.cpp.o"
+	cd /Users/kartikohlan/phosphoros/kdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/libkdb.dir/pipe.cpp.o -MF CMakeFiles/libkdb.dir/pipe.cpp.o.d -o CMakeFiles/libkdb.dir/pipe.cpp.o -c /Users/kartikohlan/phosphoros/kdb/src/pipe.cpp
+
+src/CMakeFiles/libkdb.dir/pipe.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/libkdb.dir/pipe.cpp.i"
+	cd /Users/kartikohlan/phosphoros/kdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kartikohlan/phosphoros/kdb/src/pipe.cpp > CMakeFiles/libkdb.dir/pipe.cpp.i
+
+src/CMakeFiles/libkdb.dir/pipe.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/libkdb.dir/pipe.cpp.s"
+	cd /Users/kartikohlan/phosphoros/kdb/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kartikohlan/phosphoros/kdb/src/pipe.cpp -o CMakeFiles/libkdb.dir/pipe.cpp.s
+
 # Object files for target libkdb
 libkdb_OBJECTS = \
-"CMakeFiles/libkdb.dir/process.cpp.o"
+"CMakeFiles/libkdb.dir/process.cpp.o" \
+"CMakeFiles/libkdb.dir/pipe.cpp.o"
 
 # External object files for target libkdb
 libkdb_EXTERNAL_OBJECTS =
 
 src/libkdb.a: src/CMakeFiles/libkdb.dir/process.cpp.o
+src/libkdb.a: src/CMakeFiles/libkdb.dir/pipe.cpp.o
 src/libkdb.a: src/CMakeFiles/libkdb.dir/build.make
 src/libkdb.a: src/CMakeFiles/libkdb.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kartikohlan/phosphoros/kdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libkdb.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/kartikohlan/phosphoros/kdb/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libkdb.a"
 	cd /Users/kartikohlan/phosphoros/kdb/build/src && $(CMAKE_COMMAND) -P CMakeFiles/libkdb.dir/cmake_clean_target.cmake
 	cd /Users/kartikohlan/phosphoros/kdb/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/libkdb.dir/link.txt --verbose=$(VERBOSE)
 

@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/kartikohlan/phosphoros/kdb/src/pipe.cpp" "src/CMakeFiles/libkdb.dir/pipe.cpp.o" "gcc" "src/CMakeFiles/libkdb.dir/pipe.cpp.o.d"
   "/Users/kartikohlan/phosphoros/kdb/src/process.cpp" "src/CMakeFiles/libkdb.dir/process.cpp.o" "gcc" "src/CMakeFiles/libkdb.dir/process.cpp.o.d"
   )
 

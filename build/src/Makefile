@@ -185,6 +185,30 @@ libkdb/fast:
 	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/build
 .PHONY : libkdb/fast
 
+pipe.o: pipe.cpp.o
+.PHONY : pipe.o
+
+# target to build an object file
+pipe.cpp.o:
+	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/pipe.cpp.o
+.PHONY : pipe.cpp.o
+
+pipe.i: pipe.cpp.i
+.PHONY : pipe.i
+
+# target to preprocess a source file
+pipe.cpp.i:
+	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/pipe.cpp.i
+.PHONY : pipe.cpp.i
+
+pipe.s: pipe.cpp.s
+.PHONY : pipe.s
+
+# target to generate assembly for a file
+pipe.cpp.s:
+	cd /Users/kartikohlan/phosphoros/kdb/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/libkdb.dir/build.make src/CMakeFiles/libkdb.dir/pipe.cpp.s
+.PHONY : pipe.cpp.s
+
 process.o: process.cpp.o
 .PHONY : process.o
 
@@ -223,6 +247,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... libkdb"
+	@echo "... pipe.o"
+	@echo "... pipe.i"
+	@echo "... pipe.s"
 	@echo "... process.o"
 	@echo "... process.i"
 	@echo "... process.s"

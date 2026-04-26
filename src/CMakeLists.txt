@@ -1,5 +1,6 @@
 add_library(libkdb
     process.cpp
+    pipe.cpp
 )
 
 add_library(kdb::libkdb ALIAS libkdb)

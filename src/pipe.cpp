@@ -15,8 +15,8 @@ namespace kdb {
     }
 
     if (close_on_exec) {
-      if (fcntl(fds_[fd_read], F_SETFD, O_CLOEXEC) < 0 ||
-          fcntl(fds_[fd_write], F_SETFD, O_CLOEXEC) < 0) {
+      if (fcntl(fds_[fd_read], F_SETFD, FD_CLOEXEC) < 0 ||
+          fcntl(fds_[fd_write], F_SETFD, FD_CLOEXEC) < 0) {
         error::send_error_no("Failed to close the pipe(O_CLOEXC)");
       }
     }
@@ -55,8 +55,8 @@ namespace kdb {
     auto bytes = static_cast<std::byte*>(static_cast<void *>(buf));
     return std::vector<std::byte>(bytes, bytes + chars_read);
   }
-  void pipe::write(std::byte &from, std::size_t bytes) {
-    if (::read(fds_[fd_write], &from, bytes) < 0) {
+  void pipe::write(std::byte *from, std::size_t bytes) {
+    if (::read(fds_[fd_write], from, bytes) < 0) {
       error::send_error_no("Write in Pipe failed");
     }
   }

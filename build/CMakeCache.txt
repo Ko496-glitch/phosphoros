@@ -501,7 +501,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -580,6 +580,8 @@ VCPKG_VERBOSE-ADVANCED:INTERNAL=1
 Z_VCPKG_CHECK_MANIFEST_MODE:INTERNAL=ON
 //Vcpkg root directory
 Z_VCPKG_ROOT_DIR:INTERNAL=/Users/kartikohlan/phosphoros/vcpkg
+//Catch2 full path to CatchAddTests.cmake helper file
+_CATCH_DISCOVER_TESTS_SCRIPT:INTERNAL=/Users/kartikohlan/phosphoros/kdb/build/vcpkg_installed/arm64-osx/share/catch2/CatchAddTests.cmake
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 __pkg_config_arguments_libedit:INTERNAL=REQUIRED;IMPORTED_TARGET;libedit

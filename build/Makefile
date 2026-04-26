@@ -574,6 +574,19 @@ tests/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/tests.dir/build.make test/CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
+#=============================================================================
+# Target rules for targets named run_endlessly
+
+# Build rule for target.
+run_endlessly: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 run_endlessly
+.PHONY : run_endlessly
+
+# fast build rule for target.
+run_endlessly/fast:
+	$(MAKE) $(MAKESILENT) -f test/targets/CMakeFiles/run_endlessly.dir/build.make test/targets/CMakeFiles/run_endlessly.dir/build
+.PHONY : run_endlessly/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -617,6 +630,7 @@ help:
 	@echo "... NightlyUpdate"
 	@echo "... kdb"
 	@echo "... libkdb"
+	@echo "... run_endlessly"
 	@echo "... tests"
 .PHONY : help
 

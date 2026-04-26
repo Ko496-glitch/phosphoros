@@ -10,6 +10,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/kartikohlan/phosphoros/kdb/CMakeLists.txt"
   "CMakeFiles/4.2.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.2.3/CMakeSystem.cmake"
+  "vcpkg_installed/arm64-osx/share/catch2/Catch.cmake"
   "vcpkg_installed/arm64-osx/share/catch2/Catch2Config.cmake"
   "vcpkg_installed/arm64-osx/share/catch2/Catch2ConfigVersion.cmake"
   "vcpkg_installed/arm64-osx/share/catch2/Catch2Targets-debug.cmake"
@@ -17,6 +18,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "vcpkg_installed/arm64-osx/share/catch2/Catch2Targets.cmake"
   "/Users/kartikohlan/phosphoros/kdb/src/CMakeLists.txt"
   "/Users/kartikohlan/phosphoros/kdb/test/CMakeLists.txt"
+  "/Users/kartikohlan/phosphoros/kdb/test/targets/CMakeLists.txt"
   "/Users/kartikohlan/phosphoros/kdb/tools/CMakeLists.txt"
   "/Users/kartikohlan/phosphoros/kdb/vcpkg.json"
   "/Users/kartikohlan/phosphoros/vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -69,6 +71,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "tools/CMakeFiles/CMakeDirectoryInformation.cmake"
   "test/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "test/targets/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -104,4 +107,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/libkdb.dir/DependInfo.cmake"
   "tools/CMakeFiles/kdb.dir/DependInfo.cmake"
   "test/CMakeFiles/tests.dir/DependInfo.cmake"
+  "test/targets/CMakeFiles/run_endlessly.dir/DependInfo.cmake"
   )
