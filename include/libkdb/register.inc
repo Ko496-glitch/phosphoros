@@ -10,6 +10,14 @@ DEFINE_REGISTER macro defined"
 #define DEFINE_GPR_16(name, super) DEFINE_REGSITER(name,-1, 2, GPR_OFFSET(super), register_type::sub_gpr, register_format::uint)
 #define DEFINE_GPR_8H(name, super) DEFINE_REGISTER(name,-1, 1, GPR_OFFSET(super), register_type::sub_gpr, register_format::uint)
 #define DEFINE_GPR_8L(name, super) DEFINE_REGSITER(name,-1, 1, GPR_OFFSET(name), register_type::sub_gpr, register_format::uint)
+#define FPR_OFFSET(reg) (offsetof(user, i387) + offsetof(user_fpregs_struct, reg))
+#define FPR_OFFSET(reg) (sizeof(user_fpregs_struct::reg)
+#define DEFINE_FPR(name,dwarf_id, user_name) DEFINE_REGISTER(name, dwarf_id, FPR_SIZE(user_name),FPR_OFFSET(user_name), register_type::fpr, register_format::uint)
+#define DEFINE_FP_ST(number) DEFINE_REGISTER(st ##number, (33 + number), 16, (FPR_OFFSET(st_space) + number *16), regsiter_type::fpr, register_format::long_double)
+#define DEFINE_FP_MM(number) DEFINE_REGISTER(mm ##number, (41 + number), 8, (FPR_OFFSET(st_space) + number * 16), register_type::fpr, register_format::vector)
+#define DEFINE_FP_XMM(number) DEFINE_REGISTER(xmm ##number, (17 + number), 16, (FPR_OFFSET(st_space) + number *16, register_type::fpr,  register_format::vector)
+#define DR_OFFSET(reg) (offsetof(user, u_debugging) + number * 8)
+#define DEFINE_DR(reg) DEFINE_REGISTER(dr ## number, -1, 8 , DR_OFFSET(number), register_type::dr, register_format::uint)
 
 //--------------------------------//
 //    ARM-64 bit Register        //
@@ -75,45 +83,70 @@ DEFINE_GPR_8L(r10b, r10), DEFINE_GPR_8L(r11b, r11),
 DEFINE_GPR_8L(r12b, r12), DEFINE_GPR_8L(r13b, r13),
 DEFINE_GPR_8L(r14b, r14), DEFINE_GPR_8L(r15b, r15),
 
+DEFINE_FPR(fcw, 65, , cwd),
+DEFINE_FPR(fsw, 66, swd),
+DEFINE_FPR(ftw, -1, ftd),
+DEFINE_FPR(fop, -1, fop),
+DEFINE_FPR(frip, -1, rip),
+DEFINE_FPR(frdp, -1, rdp),
+DEFINE_FPR(mxcr, 64, mxcsr),
+DEFINE_FPR(mxcsrmask, -1, mxcr_mask),
 
+
+DEFINE_FPR_ST(0), DEFINE_FPR_ST(1), DEFINE_FPR_ST(2), DEFINE_FPR_ST(3), DEFINE_FPP_ST(4),
+DEFINE_FPR_ST(5), DEFINE_FPR_ST(6), DEFINE_FPR_ST(7),
+
+DEFINE_FPR_MM(0), DEFINE_FPR_MM(1), DEFINE_FPR_MM(2), DEFINE_FPR_MM(3), DEFINE_FPP_MM(4),
+DEFINE_FPR_MM(5), DEFINE_FPR_MM(6), DEFINE_FPR_MM(7),
+
+
+DEFINE_FPR_XMM(0), DEFINE_FPR_XMM(1), DEFINE_FPR_XMM(2), DEFINE_FPR_XMM(3), DEFINE_FPP_XMM(4),
+DEFINE_FPR_XMM(5), DEFINE_FPR_XMM(6), DEFINE_FPR_XMM(7),DEFINE_FPR_XMM(8), DEFINE_FPR_XMM(9), 
+DEFINE_FPR_XMM(10), DEFINE_FPR_XMM(11), DEFINE_FPP_XMM(12),DEFINE_FPR_XMM(13), DEFINE_FPR_XMM(14), DEFINE_FPR_XMM(157),
+
+DEFINE_DR(0), DEFINE_DR(1), DEFINE_DR(2), DEFINE_DR(3), DEFINE_DR(4),
+DEFINE_DR(5), DEFINE_DR(6), DEFINE(7),
+
+ 
 //--------------------------------//
 //    ARM-64 bit Register        //
 //------------------------------//
 
 #elif  defined(__APPLE__)
 
-DEFINE_GPR_64(x0,-1),
-DEFINE_GPR_64(x1,-1),
-DEFINE_GPR_64(x2,-1),
-DEFINE_GPR_64(x3,-1),
-DEFINE_GPR_64(x4,-1),
-DEFINE_GPR_64(x5,-1),
-DEFINE_GPR_64(x6,-1),
-DEFINE_GPR_64(x7,-1),
-DEFINE_GPR_64(x8,-1),
-DEFINE_GPR_64(x9,-1),
-DEFINE_GPR_64(x10,-1),
-DEFINE_GPR_64(x11,-1),
-DEFINE_GPR_64(x12,-1),
-DEFINE_GPR_64(x13,-1),
-DEFINE_GPR_64(x14,-1),
-DEFINE_GPR_64(x15,-1),
-DEFINE_GPR_64(x16,-1),
-DEFINE_GPR_64(x17,-1),
-DEFINE_GPR_64(x18,-1),
-DEFINE_GPR_64(x19,-1),
-DEFINE_GPR_64(x20,-1),
-DEFINE_GPR_64(x21,-1),
-DEFINE_GPR_64(x22,-1),
-DEFINE_GPR_64(x23,-1),
-DEFINE_GPR_64(x24,-1),
-DEFINE_GPR_64(x25,-1),
-DEFINE_GPR_64(x26,-1),
-DEFINE_GPR_64(x27,-1),
-DEFINE_GPR_64(x28,-1),
-DEFINE_GPR_64(x29,-1),
-DEFINE_GPR_64(x30,-1),
-DEFINE_GPR_64(sp,-1),
-DEFINE_GPR_64(pc,-1),
+DEFINE_GPR_64(x0,0),
+DEFINE_GPR_64(x1,1),
+DEFINE_GPR_64(x2,2),
+DEFINE_GPR_64(x3,3),
+DEFINE_GPR_64(x4,4),
+DEFINE_GPR_64(x5,5),
+DEFINE_GPR_64(x6,6),
+DEFINE_GPR_64(x7,7),
+DEFINE_GPR_64(x8,8),
+DEFINE_GPR_64(x9,9),
+DEFINE_GPR_64(x10,10),
+DEFINE_GPR_64(x11,11),
+DEFINE_GPR_64(x12,12),
+DEFINE_GPR_64(x13,13),
+DEFINE_GPR_64(x14,14),
+DEFINE_GPR_64(x15,15),
+DEFINE_GPR_64(x16,16),
+DEFINE_GPR_64(x17,17),
+DEFINE_GPR_64(x18,18),
+DEFINE_GPR_64(x19,19),
+DEFINE_GPR_64(x20,20),
+DEFINE_GPR_64(x21,21),
+DEFINE_GPR_64(x22,22),
+DEFINE_GPR_64(x23,23),
+DEFINE_GPR_64(x24,24),
+DEFINE_GPR_64(x25,25),
+DEFINE_GPR_64(x26,26),
+DEFINE_GPR_64(x27,27),
+DEFINE_GPR_64(x28,28),
+DEFINE_GPR_64(x29,29),
+DEFINE_GPR_64(x30,30),
+DEFINE_GPR_64(sp,31),
+DEFINE_GPR_64(pc,32),
+DEFINE_GPR_64(orig_rax,-1),
 
 
