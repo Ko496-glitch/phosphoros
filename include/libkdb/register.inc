@@ -3,8 +3,13 @@
 DEFINE_REGISTER macro defined"
 #endif
 
-#define GPR_OFFSET(reg) (offsetof(user, reg) + offsetof(user_regs_struct,reg))
 
+/* --------------------------------------------------------x86 Register-----------------------------------------------------------------------  - */
+//--------------------------------//
+//    x86-64 bit macros          //
+//------------------------------//
+#ifdef __linux__
+#define GPR_OFFSET(reg) (offsetof(user, reg) + offsetof(user_regs_struct,reg))
 #define DEFINE_GPR_64(name, dwarf_id) DEFINE_REGISTER(name,dwarf_id,8,GPR_OFFSET(name),register_type::name, register_format::uint)
 #define DEFINE_GPR_32(name, super) DEFINE_REGISTER(name,-1, 4, GPR_OFFSET(super), regsiter_type::sub_gpr, register_format::uint)
 #define DEFINE_GPR_16(name, super) DEFINE_REGSITER(name,-1, 2, GPR_OFFSET(super), register_type::sub_gpr, register_format::uint)
@@ -16,14 +21,9 @@ DEFINE_REGISTER macro defined"
 #define DEFINE_FP_ST(number) DEFINE_REGISTER(st ##number, (33 + number), 16, (FPR_OFFSET(st_space) + number *16), regsiter_type::fpr, register_format::long_double)
 #define DEFINE_FP_MM(number) DEFINE_REGISTER(mm ##number, (41 + number), 8, (FPR_OFFSET(st_space) + number * 16), register_type::fpr, register_format::vector)
 #define DEFINE_FP_XMM(number) DEFINE_REGISTER(xmm ##number, (17 + number), 16, (FPR_OFFSET(st_space) + number *16, register_type::fpr,  register_format::vector)
-#define DR_OFFSET(reg) (offsetof(user, u_debugging) + number * 8)
-#define DEFINE_DR(reg) DEFINE_REGISTER(dr ## number, -1, 8 , DR_OFFSET(number), register_type::dr, register_format::uint)
+#define DR_OFFSET(number) (offsetof(user, u_debugging) + number * 8)
+#define DEFINE_DR(number) DEFINE_REGISTER(dr ## number, -1, 8 , DR_OFFSET(number), register_type::dr, register_format::uint)
 
-//--------------------------------//
-//    ARM-64 bit Register        //
-//------------------------------//
-
-#ifdef __linux__
 DEFINE_GPR_64(rax,0),
 DEFINE_GPR_64(rdx,1),
 DEFINE_GPR_64(rcx,2),
@@ -107,12 +107,21 @@ DEFINE_FPR_XMM(10), DEFINE_FPR_XMM(11), DEFINE_FPP_XMM(12),DEFINE_FPR_XMM(13), D
 DEFINE_DR(0), DEFINE_DR(1), DEFINE_DR(2), DEFINE_DR(3), DEFINE_DR(4),
 DEFINE_DR(5), DEFINE_DR(6), DEFINE(7),
 
- 
-//--------------------------------//
-//    ARM-64 bit Register        //
-//------------------------------//
 
-#elif  defined(__APPLE__)
+/* --------------------------------------------------------AArch 64 Register-----------------------------------------------------------------------  - */
+//--------------------------------//
+//    AArch-64 bit macros          //
+//------------------------------//
+#elif defined(__APPLE__)
+
+#define GPR_OFFSET(regs_idx) (offsetof(user_pt_regs, regs[regs_idx]))
+#define DEFINE_GPR_64(name, dwarf_id) DEFINE_REGISTER(name,dwarf_id,8,GPR_OFFSET(name), register_type::name, register_format::uint64)
+#define DEFINE_GPR_32(name, super) DEFINE_RESGITER(name, -1, 8,  GPR_OFFSET(super), register_type::sub_gpr, register_format::uint32)
+
+
+#define FPR_OFFSET(regs_idx) (offsetof(user_fpsimd_state,vregs[regs_idx])
+#define DEFINE_FPR(name, dwarf_id) DEFINE_REGISTER(name,dward_id,16, FPR_OFFSET(name), register_format::fpr, register_type::_uint128_t)
+
 
 DEFINE_GPR_64(x0,0),
 DEFINE_GPR_64(x1,1),
@@ -149,4 +158,35 @@ DEFINE_GPR_64(sp,31),
 DEFINE_GPR_64(pc,32),
 DEFINE_GPR_64(orig_rax,-1),
 
+DEFINE_GPR_32(w0, -1),
+DEFINE_GPR_32(w1, -1),
+DEFINE_GPR_32(w2, -1),
+DEFINE_GPR_32(w3, -1),
+DEFINE_GPR_32(w4, -1),
+DEFINE_GPR_32(w5, -1),
+DEFINE_GPR_32(w6, -1),
+DEFINE_GPR_32(w7, -1),
+DEFINE_GPR_32(w8, -1),
+DEFINE_GPR_32(w9, -1),
+DEFINE_GPR_32(w10, -1),
+DEFINE_GPR_32(w11, -1),
+DEFINE_GPR_32(w12, -1),
+DEFINE_GPR_32(w13, -1),
+DEFINE_GPR_32(w14, -1),
+DEFINE_GPR_32(w15, -1),
+DEFINE_GPR_32(w16, -1),
+DEFINE_GPR_32(w17, -1),
+DEFINE_GPR_32(w18, -1),
+DEFINE_GPR_32(w19, -1),
+DEFINE_GPR_32(w20, -1),
+DEFINE_GPR_32(w21, -1),
+DEFINE_GPR_32(w22, -1),
+DEFINE_GPR_32(w23, -1),
+DEFINE_GPR_32(w24, -1),
+DEFINE_GPR_32(w25, -1),
+DEFINE_GPR_32(w26, -1),
+DEFINE_GPR_32(w27, -1),
+DEFINE_GPR_32(w28, -1),
+DEFINE_GPR_32(w29, -1),
+DEFINE_GPR_32(w30, -1),
 
