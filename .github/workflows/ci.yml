@@ -7,7 +7,22 @@ on:
     branches: [ dev ]
 
 jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run clang-format check
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: '18'
+          check-path: '.'
+          fallback-style: 'LLVM'
+
   build-linux:
+    needs: lint 
     runs-on: ubuntu-latest
 
     steps:
