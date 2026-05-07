@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/kartikohlan/phosphoros/kdb/build/cmake_install.cmake",
+		"/Users/kartikohlan/phosphoros/kdb/build/src/cmake_install.cmake",
+		"/Users/kartikohlan/phosphoros/kdb/build/tools/cmake_install.cmake",
+		"/Users/kartikohlan/phosphoros/kdb/build/test/cmake_install.cmake",
+		"/Users/kartikohlan/phosphoros/kdb/build/test/targets/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

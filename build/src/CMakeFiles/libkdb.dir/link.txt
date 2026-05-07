@@ -1,0 +1,2 @@
+/usr/bin/ar qc libkdb.a CMakeFiles/libkdb.dir/process.cpp.o CMakeFiles/libkdb.dir/pipe.cpp.o
+/usr/bin/ranlib libkdb.a
