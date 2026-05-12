@@ -35,10 +35,11 @@ namespace kdb {
   };
 #endif
 
-struct pip_args{
-   inn 
-    
-}
+  struct pip_args {
+    inn
 
-  void ptrace(ptrace_args &args);
-}//namespace kdb
+  }
+
+  void
+  ptrace(ptrace_args &args);
+} // namespace kdb

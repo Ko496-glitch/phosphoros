@@ -3,7 +3,6 @@
 #include <iostream>
 #include <stdexcept>
 
-
 namespace kdb {
 
   void ktrace(ptrace_args &args) {

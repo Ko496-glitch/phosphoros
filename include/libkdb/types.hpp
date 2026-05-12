@@ -1,10 +1,10 @@
 #pragma once
 
-#include<array>
-#include<cstddef>
+#include <array>
+#include <cstddef>
 
-namespace kdb{
-    using byte64 = std::array<std::byte,8>
-    using byte128 = std::array<std::byte,16>
-    
-}//namespace kdb
+namespace kdb {
+  using byte64 = std::array<std::byte, 8> using byte128 =
+      std::array<std::byte, 16>
+
+} // namespace kdb
