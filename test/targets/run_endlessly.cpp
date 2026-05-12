@@ -1,9 +1,9 @@
-#include<iostream>
+#include <iostream>
 
+int main() {
 
-int main(){
-    
-    volatile int i = 0;
-    while(true)i = 42;
-    return 0;
+  volatile int i = 0;
+  while (true)
+    i = 42;
+  return 0;
 }

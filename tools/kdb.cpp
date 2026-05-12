@@ -1,10 +1,10 @@
 #include <algorithm>
 #include <cstdio>
-#include <libkdb/error.hpp>
 #include <iostream>
+#include <libkdb/error.hpp>
+#include <libkdb/process.hpp>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include <libkdb/process.hpp>
 #include <sstream>
 #include <string>
 #include <string_view>

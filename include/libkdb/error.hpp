@@ -15,7 +15,6 @@ namespace kdb {
     [[noexcept]] static void send_error_no(const std::string &prefix) {
       throw std::runtime_error(prefix + ": " + std::strerror(errno));
     }
-
   };
 
 } // namespace kdb

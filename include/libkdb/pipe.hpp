@@ -18,10 +18,9 @@ namespace kdb {
     int release_write();
     void close_read();
     void close_write();
-    
+
     std::vector<std::byte> read();
     void write(std::byte *from, std::size_t bytes);
-    
   };
 
 } // namespace kdb
