@@ -1,1 +1,0 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/tests.dir/tests.cpp.o -o tests  ../src/libkdb.a ../vcpkg_installed/arm64-osx/debug/lib/manual-link/libCatch2Maind.a /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libedit.tbd ../vcpkg_installed/arm64-osx/debug/lib/libCatch2d.a
