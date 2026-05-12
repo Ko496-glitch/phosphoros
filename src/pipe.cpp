@@ -44,7 +44,7 @@ namespace kdb {
       fds_[fd_write] = -1;
     }
   }
-  
+
   std::vector<std::byte> pipe::read() {
     char buf[1024];
     int chars_read{};
@@ -52,7 +52,7 @@ namespace kdb {
       error::send_error_no("Could not read from the buffer");
     }
     // dont confuse yourself this is just reinterpret_cast<std::bytes>(buf);
-    auto bytes = static_cast<std::byte*>(static_cast<void *>(buf));
+    auto bytes = static_cast<std::byte *>(static_cast<void *>(buf));
     return std::vector<std::byte>(bytes, bytes + chars_read);
   }
   void pipe::write(std::byte *from, std::size_t bytes) {
