@@ -21,8 +21,8 @@ namespace kdb {
     using value = std::variant<std::uint8_t, std::uint16_t, std::uint32_t,
                                std::uint64_t, std::uint128_t, byte64, byte128,
                                float, double, long double>
-    // TODO(arm64): wire up register read/write for AArch64 using per-regset
-    // backends (NT_PRSTATUS/NT_FPREGSET) and Wn/Xn aliasing behavior.
+        // TODO(arm64): wire up register read/write for AArch64 using per-regset
+        // backends (NT_PRSTATUS/NT_FPREGSET) and Wn/Xn aliasing behavior.
         value read(const register_info &info) const;
     value write(const register_info &info, value val);
 
